@@ -136,6 +136,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  gender_picker:
+    dependency: "direct main"
+    description:
+      name: gender_picker
+      sha256: "75180516208bb524ba6164755915edefaff8035cbfbc94073427270c4b1b766c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   http_parser:
     dependency: transitive
     description:
@@ -208,6 +216,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  rulers:
+    dependency: "direct main"
+    description:
+      name: rulers
+      sha256: f305bddd59b3b3f4e9a314bd12a09d8efbc657e50866502a1216663baa0781b2
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
+  scale_ruler_view:
+    dependency: "direct main"
+    description:
+      name: scale_ruler_view
+      sha256: "128b09b67c4eb6accf02220ffa94da096249534cbf4f1e63073ec5a053785bca"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
+  scroll_snap_list:
+    dependency: "direct main"
+    description:
+      name: scroll_snap_list
+      sha256: "8009ad9030f680b93f3107b29b1ea31284d867aa4972868d2970c6d61fe9e59f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -277,6 +309,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  vertical_picker:
+    dependency: "direct main"
+    description:
+      name: vertical_picker
+      sha256: "43a874667546d6bb114b75fa811bb790c68a4c0c1cdab823ffa1af564dbaad5e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
 sdks:
   dart: ">=2.19.6 <3.0.0"
   flutter: ">=1.20.0"

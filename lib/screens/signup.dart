@@ -206,7 +206,7 @@ class _SignupState extends State<Signup> {
                         backgroundColor: Colors.lightGreenAccent,
                       ),
                       onPressed: () {
-                        signUp();
+                        Navigator.of(context).pushReplacementNamed('Gender');
                       },
                       child: Row(
                         children: [
@@ -216,7 +216,7 @@ class _SignupState extends State<Signup> {
                           Text(
                             "Sign up",
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               fontSize: 17,
                               color: Colors.black,
                             ),
