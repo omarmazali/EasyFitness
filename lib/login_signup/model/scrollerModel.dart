@@ -1,16 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Scroller extends StatefulWidget {
+  final String name;
   final List<String> items;
   final String Gtext;
   final String Ptext;
   final String Ppath;
   final String Npath;
   final double Height;
+  final double Size;
+  final double SizeBox;
 
   const Scroller(
-      {Key? key, required this.items, required this.Gtext, required this.Ptext, required this.Ppath, required this.Npath, required this.Height})
+      {Key? key, required this.name, required this.items, required this.Gtext, required this.Ptext, required this.Ppath, required this.Npath, required this.Height, required this.Size, required this.SizeBox})
       : super(key: key);
 
   @override
@@ -18,9 +23,33 @@ class Scroller extends StatefulWidget {
 }
 
 class _ScrollerState extends State<Scroller> {
-  int selectedAge = 0;
+  int _selectedItem = 0;
 
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  Future<void> update(String value) async {
+    try {
+      final userId = FirebaseAuth.instance.currentUser?.uid;
+      final usersRef = _firestore.collection('Users');
+      final querySnapshot =
+      await usersRef.where('userId', isEqualTo: userId).get();
+
+      if (querySnapshot.size > 0) {
+        final documentSnapshot = querySnapshot.docs.first;
+        final documentRef = documentSnapshot.reference;
+
+        await documentRef.update({
+          widget.name: value,
+        });
+
+        print('Field updated successfully!');
+      } else {
+        print('User document not found!');
+      }
+    } catch (e) {
+      print('Error updating field: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +80,14 @@ class _ScrollerState extends State<Scroller> {
                 ),
               ),
               SizedBox(
-                height: 100,
+                height: widget.SizeBox,
               ),
               SizedBox(
                 height: 300,
                 child: CupertinoPicker(
-                    onSelectedItemChanged: (selectedAge) {
+                    onSelectedItemChanged: (value) {
                       setState(() {
-                        this.selectedAge = selectedAge;
+                        _selectedItem = value;
                       });
                     },
                     itemExtent: 60,
@@ -66,8 +95,6 @@ class _ScrollerState extends State<Scroller> {
                     selectionOverlay: CupertinoPickerDefaultSelectionOverlay(
                       background: Colors.lightGreenAccent.withOpacity(0.5),
                     ),
-                    scrollController:
-                        FixedExtentScrollController(initialItem: 15),
                     children: List.generate(widget.items.length, (index) {
                       final item = widget.items[index];
                       return Center(
@@ -75,7 +102,7 @@ class _ScrollerState extends State<Scroller> {
                           item,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 40,
+                            fontSize: widget.Size,
                           ),
                         ),
                       );
@@ -114,8 +141,11 @@ class _ScrollerState extends State<Scroller> {
                           shape: StadiumBorder(),
                           backgroundColor: Colors.lightGreenAccent,
                         ),
-                        onPressed: () {
+                        onPressed: () async {
+                          final selectedValue = widget.items[_selectedItem];
+                          await update(selectedValue);
                           Navigator.of(context).pushReplacementNamed(widget.Npath);
+                          //print('Selected value: $selectedValue');
                         },
                         child: Row(
                           children: [

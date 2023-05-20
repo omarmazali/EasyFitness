@@ -11,10 +11,10 @@ class Height extends StatefulWidget {
 class _HeightState extends State<Height> {
 
   //IS THERE A SOLUTION TO SHOW CM ONLY ONCE
-  List<String> items = List.generate(66, (index) => (index + 135).toString() + " cm");
+  List<String> items = List.generate(66, (index) => (index + 135).toString());
 
   @override
   Widget build(BuildContext context) {
-    return Scroller(items: items, Gtext:"WHAT'S YOUR HEIGHT ?", Ptext:"THIS HELPS US CREATE YOUR PERSONALIZED PLAN", Ppath :"Weight", Npath :"Goal", Height: 100);
+    return Scroller(items: items, Gtext:"WHAT'S YOUR HEIGHT ?", Ptext:"THIS HELPS US CREATE YOUR PERSONALIZED PLAN", Ppath :"Weight", Npath :"Goal", Height: 100, Size: 40, SizeBox: 100,);
   }
 }

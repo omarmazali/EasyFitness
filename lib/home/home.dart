@@ -11,16 +11,27 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final user = FirebaseAuth.instance.currentUser!;
 
+  Future signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Navigator.of(context).pushNamed('LoginSignup');
+    } on FirebaseAuthException catch (error) {
+      print("Error $error");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text("Hello, You're signe in"),
+        Text("Hello, You're signed in"),
         Text(user.email!),
         MaterialButton(onPressed: () {
-          FirebaseAuth.instance.signOut();
-        })
+          signOut();
+        },
+        color: Colors.lightGreenAccent,
+        child: Text("Sign out"),)
       ]),
     ));
   }

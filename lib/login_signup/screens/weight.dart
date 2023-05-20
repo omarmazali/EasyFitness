@@ -1,4 +1,4 @@
-import 'package:easyfitness/screens/login_signup.dart';
+import 'package:easyfitness/login_signup/login_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:scale_ruler_view/scale_ruler_view.dart';
 

@@ -1,4 +1,4 @@
-import 'package:easyfitness/screens/forgotpassword.dart';
+import 'package:easyfitness/login_signup/forgotpassword.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

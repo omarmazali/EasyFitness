@@ -20,6 +20,6 @@ class _LevelState extends State<Level> {
 
   @override
   Widget build(BuildContext context) {
-    return Scroller(items: items, Gtext: "YOUR REGULAR PHYSICAL ACTIVITY LEVEL", Ptext: "THIS HELPS US CREATE YOUR PERSONALIZED PLAN", Ppath :"Goal", Npath :"Level", Height: 70);
+    return Scroller(items: items, Gtext: "YOUR REGULAR PHYSICAL ACTIVITY LEVEL", Ptext: "THIS HELPS US CREATE YOUR PERSONALIZED PLAN", Ppath :"Goal", Npath :"Home", Height: 100, Size: 30, SizeBox: 70);
   }
 }
