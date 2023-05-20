@@ -1,4 +1,4 @@
-import 'package:easyfitness/scroller.dart';
+import 'package:easyfitness/login_signup/model/scrollerModel.dart';
 import 'package:flutter/material.dart';
 
 class Level extends StatefulWidget {
@@ -20,6 +20,6 @@ class _LevelState extends State<Level> {
 
   @override
   Widget build(BuildContext context) {
-    return Scroller(items: items, Gtext: "YOUR REGULAR PHYSICAL ACTIVITY LEVEL", Ptext: "THIS HELPS US CREATE YOUR PERSONALIZED PLAN", Ppath :"Goal", Npath :"Home", Height: 100, Size: 30, SizeBox: 70);
+    return Scroller(name: 'level', items: items, Gtext: "YOUR REGULAR PHYSICAL ACTIVITY LEVEL", Ptext: "THIS HELPS US CREATE YOUR PERSONALIZED PLAN", Ppath :"Goal", Npath :"Home", Height: 100, Size: 30, SizeBox: 70);
   }
 }

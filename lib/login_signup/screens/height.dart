@@ -1,4 +1,4 @@
-import 'package:easyfitness/scroller.dart';
+import 'package:easyfitness/login_signup/model/scrollerModel.dart';
 import 'package:flutter/material.dart';
 
 class Height extends StatefulWidget {
@@ -15,6 +15,6 @@ class _HeightState extends State<Height> {
 
   @override
   Widget build(BuildContext context) {
-    return Scroller(items: items, Gtext:"WHAT'S YOUR HEIGHT ?", Ptext:"THIS HELPS US CREATE YOUR PERSONALIZED PLAN", Ppath :"Weight", Npath :"Goal", Height: 100, Size: 40, SizeBox: 100,);
+    return Scroller(name: 'height',items: items, Gtext:"WHAT'S YOUR HEIGHT ?", Ptext:"THIS HELPS US CREATE YOUR PERSONALIZED PLAN", Ppath :"Weight", Npath :"Home", Height: 100, Size: 40, SizeBox: 100,);
   }
 }

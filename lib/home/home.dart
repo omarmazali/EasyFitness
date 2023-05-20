@@ -10,6 +10,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final user = FirebaseAuth.instance.currentUser!;
+  final userId = FirebaseAuth.instance.currentUser?.uid;
 
   Future signOut() async {
     try {
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
         body: Center(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text("Hello, You're signed in"),
-        Text(user.email!),
+        Text(user.uid!),
         MaterialButton(onPressed: () {
           signOut();
         },

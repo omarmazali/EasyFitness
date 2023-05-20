@@ -1,4 +1,5 @@
-import 'package:easyfitness/login_signup/login_signup.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scale_ruler_view/scale_ruler_view.dart';
 
@@ -8,6 +9,33 @@ class Weight extends StatefulWidget {
 }
 
 class _WeightState extends State<Weight> {
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  int _selectedWeight = 50;
+
+  Future<void> updateWeight(int weight) async {
+    try {
+      final userId = FirebaseAuth.instance.currentUser?.uid;
+      final usersRef = _firestore.collection('Users');
+      final querySnapshot = await usersRef.where('userId', isEqualTo: userId).get();
+
+      if (querySnapshot.size > 0) {
+        final documentSnapshot = querySnapshot.docs.first;
+        final documentRef = _firestore.doc(documentSnapshot.reference.path);
+
+        await documentRef.update({
+          'weight': weight,
+        });
+
+        print('Gender updated successfully!');
+      } else {
+        print('User document not found!');
+      }
+    } catch (e) {
+      print('Error updating weight: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -97,7 +125,9 @@ class _WeightState extends State<Weight> {
                         middleSpaceValueSpace: 5,
                         highSpaceValeSpace: 10,
                         callback: (int value) {
-                          debugPrint("scaleValueChange  ${value}");
+                          setState(() {
+                            _selectedWeight = value;
+                          });
                         },
                       ),
                     )),
@@ -134,6 +164,7 @@ class _WeightState extends State<Weight> {
                               backgroundColor: Colors.lightGreenAccent,
                             ),
                             onPressed: () {
+                              updateWeight(_selectedWeight);
                               Navigator.of(context)
                                   .pushReplacementNamed('Height');
                             },

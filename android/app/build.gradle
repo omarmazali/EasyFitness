@@ -60,7 +60,11 @@ flutter {
 }
 
 dependencies {
-
+    implementation 'com.android.support:multidex:2.0.1'
     implementation platform('com.google.firebase:firebase-bom:31.5.0')
-
+}
+android {
+    defaultConfig {
+        multiDexEnabled true
+    }
 }

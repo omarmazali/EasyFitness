@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Gender extends StatefulWidget {
@@ -10,8 +12,35 @@ class Gender extends StatefulWidget {
 class _GenderState extends State<Gender> {
   String gender = "";
 
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<void> updateGender(String gender) async {
+    try {
+      final userId = FirebaseAuth.instance.currentUser?.uid;
+      final usersRef = _firestore.collection('Users');
+      final querySnapshot = await usersRef.where('userId', isEqualTo: userId).get();
+
+      if (querySnapshot.size > 0) {
+        final documentSnapshot = querySnapshot.docs.first;
+        final documentRef = _firestore.doc(documentSnapshot.reference.path);
+
+        await documentRef.update({
+          'gender': gender,
+        });
+
+        print('Gender updated successfully!');
+      } else {
+        print('User document not found!');
+      }
+    } catch (e) {
+      print('Error updating gender: $e');
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
     return Scaffold(
       backgroundColor: Colors.grey[900],
       body: SafeArea(
@@ -46,7 +75,8 @@ class _GenderState extends State<Gender> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    gender = 'Male';
+                      gender = 'Male';
+                      updateGender(gender);
                   });
                 },
                 child: Container(
@@ -95,7 +125,8 @@ class _GenderState extends State<Gender> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    gender = 'Female';
+                      gender = 'Female';
+                      updateGender(gender);
                   });
                 },
                 child: Container(

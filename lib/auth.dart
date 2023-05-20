@@ -1,5 +1,5 @@
-import 'package:easyfitness/screens/home.dart';
-import 'package:easyfitness/screens/login_signup.dart';
+import 'package:easyfitness/home/home.dart';
+import 'package:easyfitness/login_signup/screens/login_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

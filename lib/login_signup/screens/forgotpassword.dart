@@ -1,5 +1,5 @@
-import 'package:easyfitness/login_signup/login_signup.dart';
-import 'package:easyfitness/login_signup/verification.dart';
+import 'package:easyfitness/login_signup/screens/login_signup.dart';
+import 'package:easyfitness/login_signup/screens/verification.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

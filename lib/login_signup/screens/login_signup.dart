@@ -1,5 +1,5 @@
-import 'package:easyfitness/login_signup/login.dart';
-import 'package:easyfitness/login_signup/signup.dart';
+import 'package:easyfitness/login_signup/screens/login.dart';
+import 'package:easyfitness/login_signup/screens/signup.dart';
 import "package:flutter/material.dart";
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -18,10 +18,19 @@ class _LoginSignupState extends State<LoginSignup> {
 
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 1), () {
-      showTutorialCoachMark();
-    });
     super.initState();
+    checkFirstLaunch();
+  }
+
+  void checkFirstLaunch() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstLaunch = prefs.getBool('firstLaunch') ?? true;
+    if (isFirstLaunch) {
+      Future.delayed(const Duration(seconds: 1), () {
+        showTutorialCoachMark();
+      });
+    }
+    prefs.setBool('firstLaunch', false);
   }
 
   void showTutorialCoachMark() {
@@ -102,6 +111,7 @@ class CoachMarkDesc extends StatefulWidget {
 }
 
 class _CoachMarkDescState extends State<CoachMarkDesc> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
