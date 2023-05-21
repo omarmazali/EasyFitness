@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "64973272921",
-    "project_id": "easyfitness-3a0b6",
-    "storage_bucket": "easyfitness-3a0b6.appspot.com"
+    "project_number": "602546668967",
+    "project_id": "easyfit-2fafc",
+    "storage_bucket": "easyfit-2fafc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:64973272921:android:e5f46438d8777cf01dfe48",
+        "mobilesdk_app_id": "1:602546668967:android:b96f64802460cda8016282",
         "android_client_info": {
           "package_name": "com.example.easyfitness"
         }
       },
       "oauth_client": [
         {
-          "client_id": "64973272921-ha0dt6r7gqh7pv0cg77ld1dq00ckljb7.apps.googleusercontent.com",
+          "client_id": "602546668967-bugoc0phtta58leiassp2kgegd9os3ro.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA0vktzRV6vqE5ZNHM_k3Y8Rrpqpnn3tIc"
+          "current_key": "AIzaSyCZkhnoqJQSJ6NkiJvcFRJuOyFFsjpcqVg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "64973272921-ha0dt6r7gqh7pv0cg77ld1dq00ckljb7.apps.googleusercontent.com",
+              "client_id": "602546668967-bugoc0phtta58leiassp2kgegd9os3ro.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
