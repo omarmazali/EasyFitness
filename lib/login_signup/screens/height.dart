@@ -1,4 +1,4 @@
-import 'package:easyfitness/login_signup/model/scrollerModel.dart';
+import 'package:easyfitness/login_signup/models/scrollerModel.dart';
 import 'package:flutter/material.dart';
 
 class Height extends StatefulWidget {

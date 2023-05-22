@@ -16,7 +16,6 @@ class _LoginState extends State<Login> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   var _passwordToggle;
-  var _errorMessage;
 
   Future signIn() async {
     try {
@@ -256,16 +255,6 @@ class _LoginState extends State<Login> {
                       SizedBox(
                         height: 10,
                       ),
-                      //Padding(
-                      //  padding: const EdgeInsets.only(right: 5, top: 10),
-                      //  child: Text(
-                      //    _errorMessage,
-                      //    style: TextStyle(
-                      //        color: Colors.red,
-                      //        fontSize: 11.5,
-                      //        fontWeight: FontWeight.normal),
-                      //  ),
-                      //),
                       SizedBox(
                         height: 30,
                       ),
