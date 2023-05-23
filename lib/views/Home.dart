@@ -24,6 +24,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  void initState() {
+    super.initState();
+    Provider.of<WorkoutData>(context, listen: false).initalizeWorkoutlist();
+    Provider.of<WorkoutData>(context, listen: false).loadWorkoutsFromDb(); // Load workouts from the database
+  }
+
   void CreatNewPersonelWorkout(BuildContext context) {
     Navigator.push(
       context,
@@ -43,7 +49,7 @@ class _HomeState extends State<Home> {
         children: {
           ProficiencyLevel.beginner.index:Text('Beginner'),
           ProficiencyLevel.intermediate.index:Text('intermediate',),
-           ProficiencyLevel.advanced.index:Text('advanced')
+          ProficiencyLevel.advanced.index:Text('advanced')
 
         },
         selectionIndex: _level.index,
@@ -100,10 +106,10 @@ class _HomeState extends State<Home> {
                       Text(
                         "Let's train",
                         style: TextStyle(
-                          fontFamily: 'System',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 26.0,
-                          color: Colors.white
+                            fontFamily: 'System',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 26.0,
+                            color: Colors.white
                         ),
                       ),
                     ],
@@ -153,53 +159,53 @@ class _HomeState extends State<Home> {
             ),
             //populaire workouts
 
-              Column(
-                children: [
-                  SectionHeader(
-                    title: "Populaire Workouts",
-                    actionTitle: "see all",
-                    action: () {
-                      print("owww im working bro");
-                    },
+            Column(
+              children: [
+                SectionHeader(
+                  title: "Populaire Workouts",
+                  actionTitle: "see all",
+                  action: () {
+                    print("owww im working bro");
+                  },
+                ),
+                segmentedControl,
+                SizedBox(height: 15,),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  child: Row(
+                    children: value.getWorkoutlist().map((workout) {
+                      return Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: PopulaireWorkout(workout: workout),
+                      );
+                    }).toList(),
                   ),
-                  segmentedControl,
-                  SizedBox(height: 15,),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    child: Row(
-                      children: value.getWorkoutlist().map((workout) {
-                        return Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: PopulaireWorkout(workout: workout),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
+            ),
 
             //my workouts
             SingleChildScrollView(child:
-               Column(
-                children: [
-                  SectionHeader(title: "My Workouts  ", actionTitle: " See all"),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height - 590,
-                    child: ListView.builder(
-                      itemCount: value.getWorkoutlist().length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        final workout = value.getWorkoutlist()[index];
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 8, right: 8),
-                          child: PersonnalWorkoutCell(workout: workout,numberOfExercises: value.numberOfExercicesInWorkout(workout.name), ),
-                        );
-                      },
-                    ),
+            Column(
+              children: [
+                SectionHeader(title: "My Workouts  ", actionTitle: " See all"),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height - 590,
+                  child: ListView.builder(
+                    itemCount: value.getWorkoutlist().length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      final workout = value.getWorkoutlist()[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 8, right: 8),
+                        child: PersonnalWorkoutCell(workout: workout,numberOfExercises: value.numberOfExercicesInWorkout(workout.name), ),
+                      );
+                    },
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
             ),
           ],
         ),
