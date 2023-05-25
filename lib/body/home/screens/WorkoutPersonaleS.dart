@@ -23,7 +23,7 @@ class PersonnalWorkoutCell extends StatelessWidget {
     return Container(
       width: 300,
       height: 170,
-      margin: EdgeInsets.only(top: 20),
+      margin: EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: DecorationImage(
@@ -36,7 +36,7 @@ class PersonnalWorkoutCell extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 12),
+        padding: const EdgeInsets.only(left: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -47,7 +47,7 @@ class PersonnalWorkoutCell extends StatelessWidget {
                 Spacer(),
                 GestureDetector(
                   onTap: () => goToWorkotPage(context, workout.name), // Pass the context here
-                  child: Icon(Icons.arrow_forward_ios,color: Color(0xFFD0FD3E),), // Add the arrow icon widget here
+                  child: Icon(Icons.arrow_forward_ios,color: Colors.lightGreenAccent,), // Add the arrow icon widget here
                 ),
               ],
             ),

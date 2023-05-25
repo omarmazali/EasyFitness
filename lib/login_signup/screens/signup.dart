@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:core';
+import 'package:intl/intl.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -19,7 +22,6 @@ class _SignupState extends State<Signup> {
 
   var _passwordToggle;
   var _confirmpasswordToggle;
-  var _errorMessage;
 
   Future signUp() async {
     try {
@@ -27,16 +29,22 @@ class _SignupState extends State<Signup> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
       final userId = FirebaseAuth.instance.currentUser?.uid;
+
+      DateTime now = DateTime.now();
+      String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+
       addUserDetails(
-          _fnameController.text.trim(),
-          _lnameController.text.trim(),
-          _emailController.text.trim(),
-          _passwordController.text.trim(),
-          "",
-          0,
-          0,
-          0,
-          userId!);
+        _fnameController.text.trim(),
+        _lnameController.text.trim(),
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
+        "",
+        0,
+        0,
+        0,
+        userId!,
+        formattedDate,
+      );
       Navigator.of(context).pushNamed('Gender');
     } on FirebaseAuthException catch (error) {
       if (error.code == 'email-already-in-use') {
@@ -64,18 +72,21 @@ class _SignupState extends State<Signup> {
   }
 
   Future addUserDetails(
-      String firstName,
-      String lastName,
-      String email,
-      String password,
-      String gender,
-      int age,
-      int height,
-      int weight,
-      String userId) async {
+    String firstName,
+    String lastName,
+    String email,
+    String password,
+    String gender,
+    int age,
+    int height,
+    int weight,
+    String userId,
+    String dateSignedUp,
+  ) async {
+
     await FirebaseFirestore.instance.collection("Users").add({
-      'firstName': firstName,
-      'lastName': lastName,
+      'first name': firstName,
+      'last name': lastName,
       'email': email,
       'password': password,
       'gender': gender,
@@ -83,6 +94,7 @@ class _SignupState extends State<Signup> {
       'height': height,
       'weight': weight,
       'userId': userId,
+      'dateSignedUp': dateSignedUp
     });
   }
 
@@ -101,7 +113,6 @@ class _SignupState extends State<Signup> {
     super.initState();
     _passwordToggle = true;
     _confirmpasswordToggle = true;
-    _errorMessage = "";
   }
 
   @override

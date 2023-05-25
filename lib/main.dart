@@ -1,3 +1,4 @@
+import 'package:easyfitness/body/acceuil.dart';
 import 'package:easyfitness/onboarding_screen/onboard/onboard.dart';
 import 'package:easyfitness/login_signup/screens/age.dart';
 import 'package:easyfitness/login_signup/screens/forgotpassword.dart';
@@ -13,6 +14,8 @@ import 'package:easyfitness/splash_screen/splash.dart';
 import 'package:easyfitness/body/home/screens/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,6 +29,8 @@ void main() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   initScreen = await preferences.getInt('initScreen');
   await preferences.setInt('initScreen', 1);
+  await Hive.initFlutter();
+  await Hive.openBox("workout_dataBase");
   runApp(const MyApp());
 }
 
@@ -35,31 +40,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-
-        create: (context)=>WorkoutData(),
-    child:MaterialApp(
-      //home: LoginSignup(),
-
-
-
-      debugShowCheckedModeBanner: false,
-      initialRoute: initScreen == 0 || initScreen == null ? "SplashOnBoard" : "Splash",
-      routes: {
-        '/': (context) => SplashOnBoard(),
-        'OnBoard': (context) => OnBoard(),
-        'LoginSignup': (context) => LoginSignup(),
-        'ForgotPassword': (context) => const ForgotPassword(),
-        'Verification': (context) => Verification(),
-        'Gender': (context) => const Gender(),
-        'Age': (context) => const Age(),
-        'Weight': (context) => Weight(),
-        'Height': (context) => Height(),
-        'Goal': (context) => Goal(),
-        'Level': (context) => Level(),
-        'Home': (context) => HomePreviews(),
-        'Splash': (context) => const Splash(),
-        'SplashOnBoard': (context) => const SplashOnBoard(),
-      },
-    ));
+        create: (context) => WorkoutData(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          initialRoute: initScreen == 0 || initScreen == null
+              ? "SplashOnBoard"
+              : "Splash",
+          routes: {
+            '/': (context) => Acceuil(),
+            //'/': (context) => SplashOnBoard(),
+            'OnBoard': (context) => OnBoard(),
+            'LoginSignup': (context) => LoginSignup(),
+            'ForgotPassword': (context) => const ForgotPassword(),
+            'Verification': (context) => Verification(),
+            'Gender': (context) => const Gender(),
+            'Age': (context) => const Age(),
+            'Weight': (context) => Weight(),
+            'Height': (context) => Height(),
+            'Goal': (context) => Goal(),
+            'Level': (context) => Level(),
+            'Home': (context) => HomePreviews(),
+            'Splash': (context) => const Splash(),
+            'SplashOnBoard': (context) => const SplashOnBoard(),
+            'Acceuil': (context) => const Acceuil(),
+          },
+        ));
   }
 }

@@ -11,7 +11,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  GlobalKey _signUpKey = GlobalKey();
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -22,7 +21,7 @@ class _LoginState extends State<Login> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
-      Navigator.of(context).pushNamed('Home');
+      Navigator.of(context).pushNamed('Acceuil');
     } on FirebaseAuthException catch (error) {
       if (error.code == 'user-not-found') {
         wrongEmailMessage();

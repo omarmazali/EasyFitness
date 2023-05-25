@@ -1,4 +1,5 @@
 import 'package:duration_picker/duration_picker.dart';
+import 'package:easyfitness/body/acceuil.dart';
 
 import 'package:flutter/material.dart';
 import 'package:material_segmented_control/material_segmented_control.dart';
@@ -45,7 +46,7 @@ print("object");
     Navigator.push(
       context,
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => HomePreviews(),
+        pageBuilder: (context, animation, secondaryAnimation) => Acceuil(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           var begin = Offset(0.0, 0.1);
           var end = Offset.zero;

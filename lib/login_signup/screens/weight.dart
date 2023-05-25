@@ -17,7 +17,8 @@ class _WeightState extends State<Weight> {
     try {
       final userId = FirebaseAuth.instance.currentUser?.uid;
       final usersRef = _firestore.collection('Users');
-      final querySnapshot = await usersRef.where('userId', isEqualTo: userId).get();
+      final querySnapshot = await usersRef.where('userId', isEqualTo: userId)
+          .get();
 
       if (querySnapshot.size > 0) {
         final documentSnapshot = querySnapshot.docs.first;
@@ -36,10 +37,51 @@ class _WeightState extends State<Weight> {
     }
   }
 
+
+
+  Widget buildRulerWidget(Size size) {
+    return RulerWidget(
+      size: Size(size.width, size.height * 0.2),
+      viewStyle: ViewStyle.valueUpScaleDownCloseStyle,
+      showHighScaleLine: true,
+      showHighScaleNum: true,
+      showLowScaleLine: true,
+      showLowScaleNum: true,
+      showMiddleScaleLine: true,
+      showMiddleScaleNum: true,
+      showLine: false,
+      textSize: 0,
+      zoomTextSize: 50,
+      startValue: 10,
+      endValue: 200,
+      initValue: 50,
+      space: 10,
+      scaleValueSpace: 10,
+      lowScaleLineColor: Colors.lightGreenAccent,
+      middleScaleLineColor: Colors.lightGreenAccent,
+      highScaleLineColor: Colors.lightGreenAccent,
+      lineColor: Colors.white,
+      lowScaleLineHigh: 20,
+      middleScaleLineHigh: 35,
+      highScaleLineHigh: 60,
+      middleScaleLineStrokeWidth: 2,
+      lowScaleLineStrokeWidth: 2,
+      highScaleLineStrokeWidth: 2,
+      lineStrokeWidth: 2,
+      textColor: Colors.white,
+      middleSpaceValueSpace: 5,
+      highSpaceValeSpace: 10,
+      callback: (int value) {
+        setState(() {
+          _selectedWeight = value;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Colors.grey[900],
       body: SafeArea(
@@ -92,45 +134,9 @@ class _WeightState extends State<Weight> {
                     padding: const EdgeInsets.all(0),
                     child: Center(
                         child: Container(
-                      color: Colors.grey[900],
-                      child: RulerWidget(
-                        size: Size(size.width, size.height * 0.2),
-                        viewStyle: ViewStyle.valueUpScaleDownCloseStyle,
-                        showHighScaleLine: true,
-                        showHighScaleNum: true,
-                        showLowScaleLine: true,
-                        showLowScaleNum: true,
-                        showMiddleScaleLine: true,
-                        showMiddleScaleNum: true,
-                        showLine: false,
-                        textSize: 0,
-                        zoomTextSize: 50,
-                        startValue: 10,
-                        endValue: 200,
-                        initValue: 50,
-                        space: 10,
-                        scaleValueSpace: 10,
-                        lowScaleLineColor: Colors.lightGreenAccent,
-                        middleScaleLineColor: Colors.lightGreenAccent,
-                        highScaleLineColor: Colors.lightGreenAccent,
-                        lineColor: Colors.white,
-                        lowScaleLineHigh: 20,
-                        middleScaleLineHigh: 35,
-                        highScaleLineHigh: 60,
-                        middleScaleLineStrokeWidth: 2,
-                        lowScaleLineStrokeWidth: 2,
-                        highScaleLineStrokeWidth: 2,
-                        lineStrokeWidth: 2,
-                        textColor: Colors.white,
-                        middleSpaceValueSpace: 5,
-                        highSpaceValeSpace: 10,
-                        callback: (int value) {
-                          setState(() {
-                            _selectedWeight = value;
-                          });
-                        },
-                      ),
-                    )),
+                            color: Colors.grey[900],
+                            child: buildRulerWidget(size),
+                        )),
                   ),
                   SizedBox(
                     height: 150,
@@ -142,7 +148,7 @@ class _WeightState extends State<Weight> {
                         width: 50,
                         height: 50,
                         child: FloatingActionButton(
-                          onPressed: (){
+                          onPressed: () {
                             Navigator.of(context).pushReplacementNamed('Age');
                           },
                           child: Icon(
