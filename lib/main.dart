@@ -1,14 +1,14 @@
 import 'package:easyfitness/body/acceuil.dart';
 import 'package:easyfitness/onboarding_screen/onboard/onboard.dart';
-import 'package:easyfitness/login_signup/screens/age.dart';
-import 'package:easyfitness/login_signup/screens/forgotpassword.dart';
-import 'package:easyfitness/login_signup/screens/gender.dart';
-import 'package:easyfitness/login_signup/screens/goal.dart';
-import 'package:easyfitness/login_signup/screens/height.dart';
-import 'package:easyfitness/login_signup/screens/level.dart';
-import 'package:easyfitness/login_signup/screens/login_signup.dart';
-import 'package:easyfitness/login_signup/screens/verification.dart';
-import 'package:easyfitness/login_signup/screens/weight.dart';
+import 'package:easyfitness/body/login_signup/screens/age.dart';
+import 'package:easyfitness/body/login_signup/screens/forgotpassword.dart';
+import 'package:easyfitness/body/login_signup/screens/gender.dart';
+import 'package:easyfitness/body/login_signup/screens/goal.dart';
+import 'package:easyfitness/body/login_signup/screens/height.dart';
+import 'package:easyfitness/body/login_signup/screens/level.dart';
+import 'package:easyfitness/body/login_signup/screens/login_signup.dart';
+import 'package:easyfitness/body/login_signup/screens/verification.dart';
+import 'package:easyfitness/body/login_signup/screens/weight.dart';
 import 'package:easyfitness/onboarding_screen/splash/splash_onboard.dart';
 import 'package:easyfitness/splash_screen/splash.dart';
 import 'package:easyfitness/body/home/screens/Home.dart';
@@ -20,6 +20,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '/body/home/data/data.dart';
+import 'body/home/data/popularWorkoutData.dart';
 
 int? initScreen;
 
@@ -39,8 +40,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => WorkoutData(),
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<WorkoutData>(
+            create: (context) => WorkoutData(),
+          ),
+          ChangeNotifierProvider<PopularWorkoutData>(
+            create: (context) => PopularWorkoutData(),
+          ),
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           initialRoute: initScreen == 0 || initScreen == null

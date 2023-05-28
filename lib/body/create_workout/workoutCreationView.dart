@@ -72,7 +72,7 @@ class _WorkoutCreationViewState extends State<WorkoutCreationView> {
             top: 0,
             left: 0,
             right: 0,
-            child: NavigationHeader(title: "Create your\n perfect workout "),
+            child: NavigationHeader(title: "Create your\n perfect workout ",backbutton: true),
           ),
           Center(
             child: Column(

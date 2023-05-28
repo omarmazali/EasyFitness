@@ -35,6 +35,7 @@ class NavigationHeader extends StatelessWidget {
             ),
           ),
           SizedBox(height: 6.0),
+          if (subtitle != null)
           Text(
             "${subtitle}",
             style: TextStyle(
