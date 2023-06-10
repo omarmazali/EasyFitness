@@ -33,7 +33,7 @@ class _PopularExercisesPageState extends State<PopularExercisesPage> {
                   bottomRight: Radius.circular(40),
                 ),
                 child: Image.asset(
-                  'assets/image.jpg',
+                  'assets/images/image.jpg',
                   fit: BoxFit.cover,
                   height: size.height * 0.4,
                   width: size.width,
@@ -85,7 +85,7 @@ class _PopularExercisesPageState extends State<PopularExercisesPage> {
                     },
                     child: PopularExercicesCell(
                       repetitions: value.getReleventWorkout(widget.workoutName).exercises[index].repetitions,
-                      imgurl: value.getReleventWorkout(widget.workoutName).exercises[index].imageUrl ?? 'assets/defaultexercice.jpg',
+                      imgurl: value.getReleventWorkout(widget.workoutName).exercises[index].imageUrl ?? 'assets/images/defaultexercice.jpg',
                       charge: value.getReleventWorkout(widget.workoutName).exercises[index].charge,
                       name: value.getReleventWorkout(widget.workoutName).exercises[index].name,
                       sets: value.getReleventWorkout(widget.workoutName).exercises[index].sets,

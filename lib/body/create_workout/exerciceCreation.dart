@@ -41,7 +41,6 @@ class _ExercicecreationState extends State<Exercicecreation> {
           widget.workoutName, exerciseName, _workoutType, validrepetitions, validsets, validCharge,_duration);
     }
     else if (_workoutType.name=="Time"){
-print("object");
     }
     Navigator.push(
       context,
@@ -82,7 +81,7 @@ print("object");
 
   Widget _buildTextField() {
     return Container(
-      margin: EdgeInsets.only(top: 10, left: 15, right: 20),
+      margin: EdgeInsets.only(top: 5, left: 15, right: 20),
       width: 400,
       decoration: BoxDecoration(
         color: Colors.grey[800],
@@ -116,13 +115,13 @@ print("object");
 
       child: MaterialSegmentedControl(
         children: {
-          ExerciseType.rep.index: Text("Rep"),
-          ExerciseType.time.index: Text("Time"),
+          ExerciseType.rep.index: Text("Rep", style: TextStyle(fontSize: 12),),
+          ExerciseType.time.index: Text("Time", style: TextStyle(fontSize: 12)),
         },
         selectionIndex: _workoutType.index,
         borderColor: Colors.grey[900],
-        selectedColor:   Color(0xFFD0FD3E),
-        unselectedColor:  Color(0xFF2C2C2E),
+        selectedColor:   Colors.lightGreenAccent,
+        unselectedColor:  Colors.grey[800],
         selectedTextStyle: TextStyle(color: Colors.black, fontSize: 10),
         unselectedTextStyle: TextStyle(color: Colors.white, fontSize: 10),
         borderWidth: 0.1,
@@ -184,7 +183,7 @@ print("object");
                     keyboardType: TextInputType.number,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      suffixIcon:        Icon(Icons.format_list_numbered, size: 16 ,color: Color(0xFFD0FD3E),),
+                      suffixIcon:        Icon(Icons.format_list_numbered, size: 16 ,color: Colors.lightGreenAccent,),
 
                       labelText: 'Sets',
                       labelStyle: TextStyle(color: Colors.white),
@@ -216,7 +215,7 @@ print("object");
                     keyboardType: TextInputType.number,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.repeat, size: 18,color:Color(0xFFD0FD3E) ,),
+                      suffixIcon: Icon(Icons.repeat, size: 18,color:Colors.lightGreenAccent ,),
 
                       labelText: 'Reps',
                       labelStyle: TextStyle(color: Colors.white),
@@ -248,7 +247,7 @@ print("object");
                     keyboardType: TextInputType.number,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      suffixIcon:   Icon(Icons.fitness_center, size: 16,color: Color(0xFFD0FD3E),),
+                      suffixIcon:   Icon(Icons.fitness_center, size: 16,color: Colors.lightGreenAccent,),
                       labelText: 'Charge',
                       labelStyle: TextStyle(color: Colors.white),
                       filled: true,
@@ -289,58 +288,71 @@ print("object");
 
   }
 
-  Widget _buildButton() {
-    return Container(
-
-      margin: EdgeInsets.only(top: 20, left: 15, right: 20, bottom: 15),
-      width: 400,
-      child: ElevatedButton(
-
-        style: ButtonStyle(
-
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[800]!),
-          overlayColor: MaterialStateProperty.all<Color>(Colors.lightGreen!),
-        ),
-        onPressed:save,
-        child: Text(
-          'Create',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-          ),
-        ),
-      ),
-    );
-  }
-
-
 
   Widget build(BuildContext context) {
     Widget textField = _buildTextField();
     Widget segmentedControl = _buildSegmentedControl();
     Widget Content = _buildContent();
-    Widget buttonWidget = _buildButton();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[900],
       body: Column(
         children: [
-          NavigationHeader(
-            title: widget.workoutName,
-            subtitle: "let's add an exercise",
-            backbutton: true,
+          Padding(
+            padding: const EdgeInsets.only(top:40.0, left: 15.0, right: 8.0),
+            child: NavigationHeader(
+              title: widget.workoutName.toUpperCase(),
+              subtitle: "Choose the type of your exercise and add it",
+              backbutton: true,
+            ),
           ),
-          Column(
-            children: [
-              textField,
-              segmentedControl,
-            ],
+          Center(
+            child: Column(
+              children: [
+                textField,
+                segmentedControl,
+              ],
+            ),
           ),
-          Spacer(),
+          SizedBox(height: 50,),
           Content,
-          Spacer(),
-          buttonWidget,
+          SizedBox(height: 50,),
+          SizedBox(
+            height: 46,
+            width: 140,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: StadiumBorder(),
+                  backgroundColor: Colors.lightGreenAccent,
+                ),
+                onPressed: () {
+                  save();
+                },
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      "Create",
+                      style: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 17,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_right,
+                      size: 30.0,
+                      color: Colors.black,
+                    ),
+                  ],
+                )
+              //foregroundColor: Colors.black,
+              //backgroundColor: Colors.lightGreenAccent,
+            ),
+          )
         ],
       ),
     );

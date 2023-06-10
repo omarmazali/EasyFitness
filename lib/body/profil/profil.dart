@@ -46,10 +46,6 @@ class _ProfilState extends State<Profil> {
           // Calculate relative time using timeago
           relativeTime = timeago.format(dateTime, locale: 'en_short');
         });
-
-        print('First Name: $firstName');
-        print('Last Name: $lastName');
-        print('Date Signed Up: $dateSignedUp');
       } else {
         print('User document not found!');
       }
@@ -89,7 +85,7 @@ class _ProfilState extends State<Profil> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),
                             child: const Image(
-                              image: AssetImage("assets/user.png"),
+                              image: AssetImage("assets/images/user.png"),
                             ),
                           ),
                         ),

@@ -10,7 +10,7 @@ class ScreenOne extends StatelessWidget {
             height: 750,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/onboard1.png"), fit: BoxFit.cover),
+                  image: AssetImage("assets/images/onboard1.png"), fit: BoxFit.cover),
             ),
             child: Scaffold(
               backgroundColor: Colors.transparent,

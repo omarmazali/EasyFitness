@@ -7,7 +7,7 @@ import '../models/popularWorkout.dart';
 class PopularWorkoutData extends ChangeNotifier{
  List<PopularWorkout> popularWoekoutList= [
   PopularWorkout('Workout 1',[
-  PopularExercise(name: 'Exercice 1',  details: 'Détails de l\'exercice 1',imageUrl: "assets/signup.png"),
+  PopularExercise(name: 'Exercice 1',  details: 'Détails de l\'exercice 1',imageUrl: "assets/images/signup.png"),
    PopularExercise(name: 'Exercice 2',  details: 'Détails de l\'exercice 2'),
    PopularExercise(name: 'Exercice 3',  details: 'Détails de l\'exercice 3'),
 

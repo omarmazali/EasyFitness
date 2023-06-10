@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+
 import '../models/exercice.dart';
 import '../models/measurement_type.dart';
 import '../models/workout.dart';
@@ -92,6 +93,11 @@ class WorkoutData extends ChangeNotifier {
     return workoutList;
 
   }
+  void deleteWorkout(Workout workout) {
+    workoutList.remove(workout);
+    db.saveToDb(workoutList); // Save the updated workout list to the database
+    notifyListeners();
+  }
   void loadWorkoutsFromDb() {
     workoutList = db.readFromDb(); // Load workouts from the database
     notifyListeners();
@@ -103,6 +109,7 @@ class WorkoutData extends ChangeNotifier {
     db.saveToDb(workoutList); // Save the workouts to the database
     notifyListeners();
   }
+
 
   void addExercise(
       String workoutName,
@@ -134,6 +141,9 @@ class WorkoutData extends ChangeNotifier {
       ));
     } else {
       print('Invalid workout type.');
+      notifyListeners();
+      db.saveToDb(workoutList);
+
       return;
     }
 

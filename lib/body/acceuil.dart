@@ -5,6 +5,7 @@ import 'package:easyfitness/body/profil/profil.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 class Acceuil extends StatefulWidget {
   const Acceuil({Key? key}) : super(key: key);
 
@@ -13,6 +14,8 @@ class Acceuil extends StatefulWidget {
 }
 
 class _AcceuilState extends State<Acceuil> {
+
+
   int _page = 0;
   final screens = [
     HomePreviews(),
@@ -25,14 +28,6 @@ class _AcceuilState extends State<Acceuil> {
   @override
   void initState() {
     super.initState();
-    _loadPage();
-  }
-
-  Future<void> _loadPage() async {
-    _prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _page = _prefs.getInt('currentPage') ?? 0;
-    });
   }
 
   Future<void> _savePage(int index) async {

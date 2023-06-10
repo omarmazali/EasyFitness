@@ -10,7 +10,7 @@ class ScreenTwo extends StatelessWidget {
         height: 750,
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/onboard2.png"), fit: BoxFit.cover, ),
+              image: AssetImage("assets/images/onboard2.png"), fit: BoxFit.cover, ),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,

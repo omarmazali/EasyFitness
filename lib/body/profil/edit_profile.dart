@@ -129,7 +129,7 @@ class _EditProfileState extends State<EditProfile> {
                             borderRadius: BorderRadius.circular(50),
                             child: _profileImage != null
                                 ? Image.file(_profileImage!)
-                                : Image.asset("assets/user.png")),
+                                : Image.asset("assets/images/user.png")),
                       ),
                     ),
                     Positioned(

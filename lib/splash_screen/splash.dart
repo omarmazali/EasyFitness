@@ -33,7 +33,7 @@ class _SplashState extends State<Splash> {
                 child: Container(
                     height: 130,
                     child: Image(
-                      image: AssetImage("assets/dumbbell.png"),
+                      image: AssetImage("assets/images/dumbbell.png"),
                     )),
               )),
           Positioned(

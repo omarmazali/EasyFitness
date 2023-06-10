@@ -104,7 +104,7 @@ class _LoginState extends State<Login> {
         height: 900,
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/login.png"), fit: BoxFit.cover),
+              image: AssetImage("assets/images/login.png"), fit: BoxFit.cover),
         ),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
@@ -282,7 +282,7 @@ class _LoginState extends State<Login> {
                               signInGoogle();
                             },
                             child: ImageIcon(
-                              AssetImage("assets/google.png"),
+                              AssetImage("assets/images/google.png"),
                               size: 30,
                             ),
                             style: ElevatedButton.styleFrom(

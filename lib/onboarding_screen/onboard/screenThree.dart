@@ -10,7 +10,7 @@ class ScreenThree extends StatelessWidget {
         height: 750,
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/onboard3.png"),
+              image: AssetImage("assets/images/onboard3.png"),
               fit: BoxFit.cover,
           ),
         ),

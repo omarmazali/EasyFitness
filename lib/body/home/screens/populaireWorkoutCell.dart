@@ -30,7 +30,7 @@ class PopulaireWorkoutCell extends StatelessWidget {
           image: DecorationImage(
             image: workout.imageUrl != null
                 ? AssetImage(workout.imageUrl!)
-                : AssetImage('assets/image.jpg'),
+                : AssetImage('assets/images/image.jpg'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
               Colors.black.withOpacity(0.3),
@@ -43,7 +43,7 @@ class PopulaireWorkoutCell extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 6,),
+              SizedBox(height: 35,),
               SizedBox(height: 80,),
               Text(
                 workout.name,

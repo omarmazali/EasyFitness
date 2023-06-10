@@ -1,9 +1,10 @@
-import 'package:easyfitness/body/login_signup/screens/login.dart';
 import 'package:easyfitness/body/login_signup/screens/signup.dart';
 import "package:flutter/material.dart";
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+
+import 'login.dart';
 
 class LoginSignup extends StatefulWidget {
   @override
@@ -44,20 +45,21 @@ class _LoginSignupState extends State<LoginSignup> {
   void initTarget() {
     targets = [
       TargetFocus(
-          identify: "indicator-key",
-          keyTarget: _indicatorKey,
-          shape: ShapeLightFocus.RRect,
-          contents: [
-            TargetContent(
-              align: ContentAlign.top,
-              builder: (context, controller) {
-                return CoachMarkDesc(
-                  text:
-                      "Don't have an account ? You can swipe left to create a new one",
-                );
-              },
-            )
-          ])
+        identify: "indicator-key",
+        keyTarget: _indicatorKey,
+        shape: ShapeLightFocus.RRect,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            builder: (context, controller) {
+              return CoachMarkDesc(
+                text:
+                "Don't have an account? You can swipe left to create a new one.",
+              );
+            },
+          )
+        ],
+      )
     ];
   }
 
@@ -65,26 +67,29 @@ class _LoginSignupState extends State<LoginSignup> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[900],
-      body: Column(
-        children: [
-          SizedBox(
-            height: 670,
-            child: PageView(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 670,
+              child: PageView(
+                controller: _controller,
+                children: [Login(), Signup()],
+              ),
+            ),
+            SizedBox(height: 20), // Add some spacing between the PageView and SmoothPageIndicator
+            SmoothPageIndicator(
+              key: _indicatorKey,
               controller: _controller,
-              children: [Login(), Signup()],
+              count: 2,
+              effect: ExpandingDotsEffect(
+                activeDotColor: Colors.lightGreen,
+                dotHeight: 7,
+                dotWidth: 15,
+              ),
             ),
-          ),
-          SmoothPageIndicator(
-            key: _indicatorKey,
-            controller: _controller,
-            count: 2,
-            effect: ExpandingDotsEffect(
-              activeDotColor: Colors.lightGreen,
-              dotHeight: 7,
-              dotWidth: 15,
-            ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -92,13 +97,13 @@ class _LoginSignupState extends State<LoginSignup> {
 
 class CoachMarkDesc extends StatefulWidget {
   const CoachMarkDesc({
-    super.key,
+    Key? key,
     required this.text,
     this.skip = "",
     this.next = "",
     this.onSkip,
     this.onNext,
-  });
+  }) : super(key: key);
 
   final String text;
   final String skip;
@@ -111,7 +116,6 @@ class CoachMarkDesc extends StatefulWidget {
 }
 
 class _CoachMarkDescState extends State<CoachMarkDesc> {
-
   @override
   Widget build(BuildContext context) {
     return Container(

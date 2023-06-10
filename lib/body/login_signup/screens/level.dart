@@ -11,15 +11,17 @@ class Level extends StatefulWidget {
 class _LevelState extends State<Level> {
 
   List<String> items =[
-    "Rookie",
-    "Beginner",
-    "Intermediate",
-    "Advance",
-    "True beast"
+    "Sedentary - No exercise",
+    "Lightly active - 1-3 days/week",
+    "Moderately active - 3-5 days/week",
+    "Very active - 6-7 days a week",
+    "Extra active - Physical job"
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scroller(name: 'level', items: items, Gtext: "YOUR REGULAR PHYSICAL ACTIVITY LEVEL", Ptext: "THIS HELPS US CREATE YOUR PERSONALIZED PLAN", Ppath :"Goal", Npath :"Home", Height: 100, Size: 30, SizeBox: 70);
+    return Scroller(name: 'level', items: items, Gtext: "YOUR REGULAR PHYSICAL ACTIVITY LEVEL", Ptext: "THIS HELPS US CREATE YOUR PERSONALIZED PLAN", Ppath :"Weight", Npath :"Acceuil", Height: 100, Size: 25, SizeBox: 70);
   }
+
+
 }

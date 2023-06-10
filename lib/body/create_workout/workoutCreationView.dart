@@ -28,16 +28,7 @@ class _WorkoutCreationViewState extends State<WorkoutCreationView> {
 
     Navigator.push(
       context,
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            Exercicecreation(workoutName: workoutName),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          var begin = Offset(1.0, 0.1);
-          var end = Offset.zero;
-          var tween = Tween(begin: begin, end: end);
-          return SlideTransition(position: animation.drive(tween), child: child);
-        },
-      ),
+      MaterialPageRoute(builder: (context) => Exercicecreation(workoutName: workoutName)),
     );
   }
   void clear(){
@@ -47,67 +38,98 @@ class _WorkoutCreationViewState extends State<WorkoutCreationView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor:Color(0xFFD0FD3E) , // Use the variable for button color
-        onPressed: save,
-        child: MouseRegion(
-
-          child: Container(
-            decoration: BoxDecoration(
-              color: Color(0xFFD0FD3E),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              Icons.arrow_forward,
-              color: Colors.white,
-            ),
+    return SingleChildScrollView(
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.grey[900],
+          body: Stack(
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: Padding(
+                  padding: const EdgeInsets.only(top:40.0, left: 15.0, right: 8.0),
+                  child: NavigationHeader(title: "CREATE YOUR PERFECT WORKOUT", subtitle: "Give it a name first, then you'll add your exercices",),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 35,top: 70),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 350,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[800],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Name your workout",
+                          hintStyle: TextStyle(
+                            color: Colors.grey[400],
+                          ),
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                        ),
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                        controller: _controller,
+                        onChanged: (text) {
+                          setState(() {
+                            workoutName = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 100),
+                      child: SizedBox(
+                        height: 46,
+                        width: 120,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: StadiumBorder(),
+                              backgroundColor: Colors.lightGreenAccent,
+                            ),
+                            onPressed: () {
+                              save();
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  "Next",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 17,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_right,
+                                  size: 30.0,
+                                  color: Colors.black,
+                                ),
+                              ],
+                            )
+                          //foregroundColor: Colors.black,
+                          //backgroundColor: Colors.lightGreenAccent,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
-      ),
-      backgroundColor: Colors.grey[900],
-      body: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: NavigationHeader(title: "Create your\n perfect workout ",backbutton: true),
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 350,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[800],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: "Name your workout",
-                      hintStyle: TextStyle(
-                        color: Colors.grey[400],
-                      ),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                    ),
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    controller: _controller,
-                    onChanged: (text) {
-                      setState(() {
-                        workoutName = text;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

@@ -36,12 +36,15 @@ class NavigationHeader extends StatelessWidget {
           ),
           SizedBox(height: 6.0),
           if (subtitle != null)
-          Text(
-            "${subtitle}",
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 18.0,
-              color: Colors.white,
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+              "${subtitle}",
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 14.0,
+                color: Colors.white,
+              ),
             ),
           ),
         ],
