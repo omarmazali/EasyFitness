@@ -7,17 +7,13 @@ class PopularExercicesCell extends StatelessWidget {
   final int sets;
   final double charge;
 
-
-
-  PopularExercicesCell({
-    Key? key,
-    required this.repetitions,
-    required this.charge,
-    required this.name,
-    required this.sets,
-     required this.imgurl
-
-  });
+  PopularExercicesCell(
+      {Key? key,
+      required this.repetitions,
+      required this.charge,
+      required this.name,
+      required this.sets,
+      required this.imgurl});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +23,6 @@ class PopularExercicesCell extends StatelessWidget {
       decoration: BoxDecoration(
         color: Color(0xff2C2C2E),
         borderRadius: BorderRadius.circular(15.0),
-
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +34,10 @@ class PopularExercicesCell extends StatelessWidget {
               borderRadius: BorderRadius.circular(18.0),
             ),
             // we can change the icone to an image
-            child: Image.asset(imgurl,fit: BoxFit.cover,),
+            child: Icon(
+              Icons.fitness_center,
+              color: Colors.grey,
+            ),
           ),
           SizedBox(width: 12),
           Expanded(
@@ -48,28 +46,45 @@ class PopularExercicesCell extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white),
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
                 SizedBox(height: 8),
                 Row(
                   children: [
-                    Icon(Icons.repeat, size: 16,color: Colors.white,),
+                    Icon(
+                      Icons.repeat,
+                      size: 16,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 4),
-                    Text("${repetitions} Reps",style: TextStyle(color: Colors.white),),
+                    Text(
+                      "${repetitions} Reps",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     SizedBox(width: 12),
-                    Icon(Icons.format_list_numbered, size: 16,color: Colors.white,),
+                    Icon(
+                      Icons.format_list_numbered,
+                      size: 16,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 4),
-                    Text("${sets} Sets",style: TextStyle(color: Colors.white)),
+                    Text("${sets} Sets", style: TextStyle(color: Colors.white)),
                     SizedBox(width: 12),
-                    Icon(Icons.fitness_center, size: 16,color: Colors.white,),
+                    Icon(
+                      Icons.fitness_center,
+                      size: 16,
+                      color: Colors.white,
+                    ),
                     SizedBox(width: 4),
-                    Text("${charge} KG",style: TextStyle(color: Colors.white)),
+                    Text("${charge} KG", style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ],
             ),
           ),
-
         ],
       ),
     );

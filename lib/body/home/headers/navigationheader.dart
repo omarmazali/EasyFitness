@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class NavigationHeader extends StatelessWidget {
-  final String title;
+  final String? title;
   final String? subtitle;
   final bool? backbutton;
 
   const NavigationHeader({
     Key? key,
-    required this.title,
+    this.title,
     this.subtitle,
     this.backbutton = false,
   }) : super(key: key);

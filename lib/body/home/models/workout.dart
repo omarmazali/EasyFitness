@@ -8,6 +8,7 @@ class Workout {
   final int? points;
   final List<Exercise> exercices;
 
+
   Workout({
     required this.name,
     required this.exercices,
@@ -15,5 +16,6 @@ class Workout {
     this.time,
     this.numberOfExercises,
     this.points,
+
   });
 }

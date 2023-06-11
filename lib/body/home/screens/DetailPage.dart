@@ -1,9 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
+import '../data/data.dart';
+import '../data/popularWorkoutData.dart';
 import '../models/popularExercice.dart';
 
 class ExerciseDetailPage extends StatefulWidget {
@@ -36,9 +37,10 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
 
   void initializeVideoPlayer() {
     final exercise = widget.exercises[widget.currentIndex];
-    videoPlayerController = VideoPlayerController.asset('assets/videos/boy.mp4')
+    videoPlayerController = VideoPlayerController.asset(exercise.videoUrl)
       ..initialize().then((_) {
         setState(() {});
+        videoPlayerController!.setVolume(0.0);
         videoPlayerController!.play(); // Start the video automatically
         videoPlayerController!.setLooping(true); // Set looping to true
       });
@@ -55,6 +57,7 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
   @override
   Widget build(BuildContext context) {
     final exercise = widget.exercises[widget.currentIndex];
+    var url = Provider.of<WorkoutData>(context, listen: false);
 
     return OrientationBuilder(
       builder: (context, orientation) {
@@ -77,7 +80,8 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
               )
             : Container();
 
-        return Scaffold(
+        return Consumer<PopularWorkoutData>(
+            builder: (context, value, child) => Scaffold(
           //appBar: AppBar(title: Text(exercise.name)),
           body: Center(
             child: Column(
@@ -119,7 +123,7 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
                                         ),
                                       ),
                                       Text(
-                                        '2',
+                                        '${exercise.sets}',
                                         style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           fontSize: 17,
@@ -135,7 +139,7 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
                                         ),
                                       ),
                                       Text(
-                                        '2',
+                                        '${exercise.repetitions}',
                                         style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           fontSize: 17,
@@ -151,7 +155,7 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
                                         ),
                                       ),
                                       Text(
-                                        '2',
+                                        '${exercise.charge}',
                                         style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           fontSize: 17,
@@ -239,7 +243,7 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
               ],
             ),
           ),
-        );
+        ));
       },
     );
   }

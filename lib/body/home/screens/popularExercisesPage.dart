@@ -1,3 +1,5 @@
+import 'package:easyfitness/body/home/headers/navigationheader.dart';
+import 'package:easyfitness/body/home/headers/sectionHeader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +35,7 @@ class _PopularExercisesPageState extends State<PopularExercisesPage> {
                   bottomRight: Radius.circular(40),
                 ),
                 child: Image.asset(
-                  'assets/images/image.jpg',
+                  value.getReleventWorkout(widget.workoutName).imageUrl ?? '',
                   fit: BoxFit.cover,
                   height: size.height * 0.4,
                   width: size.width,
@@ -56,7 +58,7 @@ class _PopularExercisesPageState extends State<PopularExercisesPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 14.0,right: 10),
                 child: Text(
-                  'Lorem Ipsum est un générateur de faux textes aléatoires. Vous choisissez le nombre de paragraphes, de mots ou de listes. Vous obtenez alors un texte aléatoire que vous pourrez ensuite utiliser librement dans vos maquettes..',
+                  value.getReleventWorkout(widget.workoutName).description ?? ''  ,
                   style: TextStyle(
 
                     fontSize: 16,
@@ -94,7 +96,7 @@ class _PopularExercisesPageState extends State<PopularExercisesPage> {
                 ),
               ),
               ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(25),
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -108,8 +110,8 @@ class _PopularExercisesPageState extends State<PopularExercisesPage> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 80),
-                    backgroundColor: Color(0xFFD0FD3E),
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                    backgroundColor: Colors.lightGreenAccent,
                     textStyle: TextStyle(color: Colors.black),
                   ),
                   child: Text(

@@ -7,13 +7,17 @@ class PopularWorkout {
   final int? points;
   final int? time;
   final int? numberOfExercises;
+  final String? level;
+  final String? description;
 
   PopularWorkout(
-      this.name,
-      this.exercises, {
-        this.imageUrl,
-         this.points,
-         this.time,
-         this.numberOfExercises,
-      });
+    this.name,
+    this.exercises, {
+    this.imageUrl,
+    this.points,
+    this.time,
+    this.numberOfExercises,
+    this.level,
+    this.description,
+  });
 }

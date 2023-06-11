@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SectionHeader extends StatelessWidget {
-  final String title;
+  final String? title;
   final String? actionTitle;
   final VoidCallback? action;
 
   const SectionHeader({
     Key? key,
-    required this.title,
+    this.title,
     this.actionTitle,
     this.action,
   }) : super(key: key);

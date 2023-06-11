@@ -56,7 +56,6 @@ class MyApp extends StatelessWidget {
               : "Splash",
           routes: {
             '/': (context) => Acceuil(),
-            //'/': (context) => SplashOnBoard(),
             'OnBoard': (context) => OnBoard(),
             'LoginSignup': (context) => LoginSignup(),
             'ForgotPassword': (context) => const ForgotPassword(),

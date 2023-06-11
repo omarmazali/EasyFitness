@@ -1,4 +1,3 @@
-
 import 'package:easyfitness/body/home/screens/popularExercisesPage.dart';
 import 'package:flutter/material.dart';
 
@@ -7,13 +6,15 @@ import '../models/popularWorkout.dart';
 
 class PopulaireWorkoutCell extends StatelessWidget {
   final PopularWorkout workout;
+  final double width ;
+  final double height ;
 
-  PopulaireWorkoutCell({Key? key, required this.workout});
+  PopulaireWorkoutCell({Key? key, required this.workout,required this.width,required this.height});
   void goToWorkotPage(BuildContext context, String workoutName) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => PopularExercisesPage(workoutName:  workoutName,),
+        builder: (context) => PopularExercisesPage(workoutName:  workoutName),
       ),
     );
   }
@@ -21,16 +22,16 @@ class PopulaireWorkoutCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => goToWorkotPage(context, workout.name),
+      onTap: () => goToWorkotPage(context, workout.name, ),
       child: Container(
-        width: 196,
-        height: 165,
+        width: width ,
+        height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
             image: workout.imageUrl != null
                 ? AssetImage(workout.imageUrl!)
-                : AssetImage('assets/images/image.jpg'),
+                : AssetImage('assets/images/workouts/beginner1.jpg'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
               Colors.black.withOpacity(0.3),
@@ -43,28 +44,27 @@ class PopulaireWorkoutCell extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 35,),
-              SizedBox(height: 80,),
-              Text(
-                workout.name,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold ,color: Colors.white),
-              ),
-              Row(
+              SizedBox(height: 6,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.access_time,color: Colors.white,),
-                  SizedBox(width: 4),
+                  SizedBox(height: 80,),
                   Text(
-                    "${workout.time} min",
-                    style: TextStyle(color: Colors.white,fontSize: 12),
+                    workout.name,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold ,color: Colors.white),
                   ),
-                  SizedBox(width: 12),
-                  Icon(Icons.fitness_center,color: Colors.white,),
-                  Text(
-                    "${workout.numberOfExercises} exercice${workout.numberOfExercises?.compareTo(1) == 1 ? 's' : ''}",
-                    style: TextStyle(color: Colors.white,fontSize: 12),
+                  SizedBox(height: 5,),
+                  Row(
+                    children: [
+                      Icon(Icons.fitness_center,color: Colors.white,),
+                      Text(
+                        "  ${workout.numberOfExercises} exercice${workout.numberOfExercises?.compareTo(1) == 1 ? 's' : ''}",
+                        style: TextStyle(color: Colors.white,fontSize: 12),
+                      ),
+                    ],
                   ),
                 ],
-              ),
+              )
             ],
           ),
         ),

@@ -5,6 +5,7 @@ class PopularExercise {
   final int sets;
   final double charge;
   final String details;
+  final String videoUrl;
 
 
   PopularExercise({
@@ -13,6 +14,7 @@ class PopularExercise {
     this.repetitions = 0,
     this.sets = 0,
     this.charge = 0.0,
-    required this.details
+    required this.details,
+    required this.videoUrl
   });
 }

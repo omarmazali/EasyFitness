@@ -9,7 +9,7 @@ class WorkoutData extends ChangeNotifier {
   final db = HiveDb();
 
   List<Workout> workoutList=[
-    Workout(name: "Puch",numberOfExercises: 20,points: 2,time: 5,imageUrl:"assets/workout.jpg" , exercices: [Exercise(
+    Workout(name: "Push",numberOfExercises: 20,points: 2,time: 5,imageUrl:"assets/beginner1.jpg" , exercices: [Exercise(
       id: "1",
       name: "sder",
       type: ExerciseType.rep,
@@ -19,7 +19,7 @@ class WorkoutData extends ChangeNotifier {
 
 
     )]),
-    Workout(name: "Pull",numberOfExercises: 7,points: 24,time: 5,imageUrl:"assets/workout.jpg" , exercices: [Exercise(
+    Workout(name: "Pull",numberOfExercises: 7,points: 24,time: 5,imageUrl:"assets/beginner1.jpg" , exercices: [Exercise(
       id: "1",
       name: "sder",
       type: ExerciseType.rep,
@@ -43,46 +43,10 @@ class WorkoutData extends ChangeNotifier {
   void initalizeWorkoutlist() {
     if (db.previousDataExists()) {
       workoutList = db.readFromDb();
-    } else {
-      db.saveToDb(workoutList);
     }
 
     // Add the following check to ensure the default workouts are added to workoutList if it's empty
-    if (workoutList.isEmpty) {
-      workoutList = [
-        Workout(name: "Puch", numberOfExercises: 20,points: 2,time: 5,imageUrl:"assets/workout.jpg", exercices: [
-          Exercise(
-            id: "1",
-            name: "sder",
-            type: ExerciseType.rep,
-            sets: 3,
-            repetitions: 8,
-            charge: 30.0,
-          ),
-        ]),
-        Workout(name: "Pull", numberOfExercises: 7, points: 24, time: 5, imageUrl: "assets/workout.jpg", exercices: [
-          Exercise(
-            id: "1",
-            name: "sder",
-            type: ExerciseType.rep,
-            sets: 3,
-            repetitions: 8,
-            charge: 30.0,
-          ),
-          Exercise(
-            id: "2",
-            name: "dhh",
-            type: ExerciseType.rep,
-            sets: 3,
-            repetitions: 8,
-            charge: 30.0,
-          ),
-        ]),
-      ];
 
-      // Save the default workouts to the database
-      db.saveToDb(workoutList);
-    }
   }
 
 
